@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	consonants = []rune{
+	starters = []rune{
 		'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm',
 		'n', 'p', 'q', 'r', 's', 't', 'v', 'y', 'z',
 	}
@@ -22,7 +22,7 @@ var (
 )
 
 func genran(ran *rand.Rand) (s string) {
-	s += string(consonants[ran.Intn(len(consonants))])
+	s += string(starters[ran.Intn(len(starters))])
 	s += string(vovels[ran.Intn(len(vovels))])
 	s += string(finishers[ran.Intn(len(finishers))])
 	return s
