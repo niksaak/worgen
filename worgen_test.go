@@ -27,8 +27,8 @@ func TestDeterministic(t *testing.T) {
 }
 
 func TestBig(t *testing.T) {
-	a := Wor64(9)
-	b := WorBig(big.NewInt(9))
+	a := Wor64(math.MaxInt64)
+	b := WorBig(big.NewInt(math.MaxInt64))
 	t.Logf("a == %q", a)
 	t.Logf("b == %q", b)
 	stringCmp(a, b, t)

@@ -57,10 +57,15 @@ func Wor64(n int64) string {
 // calculated as:
 //     (bitLength(n) / 16) rounded towards infinity
 func WorBig(n *big.Int) string {
-	if n.BitLen() < 64 {
-		return Wor64(n.Int64())
-	} else {
+	switch {
+	case n.BitLen() <= 16:
+		return Wor(n.Int64(), 1)
+	case n.BitLen() <= 32:
+		return Wor(n.Int64(), 2)
+	case n.BitLen() <= 64:
+		return Wor(n.Int64(), 4)
+	default:
 		sum := crc64.Checksum(n.Bytes(), crc64.MakeTable(crc64.ECMA))
-		return Wor64(int64(sum))
+		return Wor(int64(sum), (n.BitLen() + 16) / 16)
 	}
 }
